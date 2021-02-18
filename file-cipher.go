@@ -71,7 +71,7 @@ func main() {
 		fo.Write(decrypt(data,getKey()))
 		fmt.Println("done")
 	default:
-		fmt.Println("o no no no !!!")
+		fmt.Println("usage: file-cipher.go [-enc|-dec] <file>")
 	}	
 }
 
