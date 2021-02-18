@@ -10,7 +10,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-    "bufio"
+	"bufio"
 )
 
 
@@ -18,7 +18,6 @@ func getKey() string {
 	keyreader := bufio.NewReader(os.Stdin)
 	fmt.Println("key:")
 	key, _ := keyreader.ReadString('\n')
-	
 	hasher := md5.New()
 	hasher.Write([]byte(key))
 	return hex.EncodeToString(hasher.Sum(nil))
@@ -58,7 +57,6 @@ func decrypt(data []byte, keyhash string) []byte {
 }
 
 func main() {
-	
 	fi, _ := os.Open(os.Args[2]) 
 	read := bufio.NewReader(fi)
 	data, _ := ioutil.ReadAll(read) 
