@@ -58,18 +58,17 @@ func decrypt(data []byte) []byte {
 }
 
 func main() {
+	
+	fi, _ := os.Open(os.Args[2]) 
+	read := bufio.NewReader(fi)
+	data, _ := ioutil.ReadAll(read) 
+	
 	switch os.Args[1] {
 	case "-enc":
-		fi, _ := os.Open(os.Args[2]) 
-		read := bufio.NewReader(fi)
-		data, _ := ioutil.ReadAll(read) 
 		fo, _ := os.Create(os.Args[2]+".enc") 
 		fo.Write(encrypt(data))
 		fmt.Println("done")
 	case "-dec":
-		fi, _ := os.Open(os.Args[2])
-		read := bufio.NewReader(fi)
-		data, _ := ioutil.ReadAll(read) 
 		fo, _ := os.Create(os.Args[2]+".dec") 
 		fo.Write(decrypt(data))
 		fmt.Println("done")
