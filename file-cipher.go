@@ -25,8 +25,8 @@ func getKey() string {
 }
 
 
-func encrypt(data []byte) []byte {
-	block, _ := aes.NewCipher([]byte(getKey()))
+func encrypt(data []byte, keyhash string) []byte {
+	block, _ := aes.NewCipher([]byte(keyhash))
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
 		fmt.Println(err)
@@ -39,8 +39,8 @@ func encrypt(data []byte) []byte {
 	return ciphertext
 }
 
-func decrypt(data []byte) []byte {
-	block, err := aes.NewCipher([]byte(getKey()))
+func decrypt(data []byte, keyhash string) []byte {
+	block, err := aes.NewCipher([]byte(keyhash))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -66,11 +66,11 @@ func main() {
 	switch os.Args[1] {
 	case "-enc":
 		fo, _ := os.Create(os.Args[2]+".enc") 
-		fo.Write(encrypt(data))
+		fo.Write(encrypt(data, getKey()))
 		fmt.Println("done")
 	case "-dec":
 		fo, _ := os.Create(os.Args[2]+".dec") 
-		fo.Write(decrypt(data))
+		fo.Write(decrypt(data,getKey()))
 		fmt.Println("done")
 	default:
 		fmt.Println("o no no no !!!")
