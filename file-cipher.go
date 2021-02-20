@@ -57,6 +57,10 @@ func decrypt(data []byte, keyhash string) []byte {
 }
 
 func main() {
+	if len(os.Args) != 3 {
+		fmt.Println("usage: file-cipher.go [-enc|-dec] <file>")
+		os.Exit(3)
+	}
 	switch os.Args[1] {
 	case "-enc":
 		fi, _ := os.Open(os.Args[2]) 
