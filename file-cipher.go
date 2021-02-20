@@ -58,7 +58,7 @@ func decrypt(data []byte, keyhash string) []byte {
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Println("usage: file-cipher.go [-enc|-dec] <file>")
+		fmt.Println("usage: "+os.Args[0]+" [-enc|-dec] <file>")
 		os.Exit(3)
 	}
 	switch os.Args[1] {
@@ -77,7 +77,7 @@ func main() {
 		fo.Write(decrypt(data,getKey()))
 		fmt.Println("done")
 	default:
-		fmt.Println("usage: file-cipher.go [-enc|-dec] <file>")
+		fmt.Println("usage: "+os.Args[0]+" [-enc|-dec] <file>")
 	}	
 }
 
