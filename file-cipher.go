@@ -63,18 +63,20 @@ func main() {
 	}
 	switch os.Args[1] {
 	case "-enc":
+		ckey := getKey()
 		fi, _ := os.Open(os.Args[2]) 
 		read := bufio.NewReader(fi)
 		data, _ := ioutil.ReadAll(read) 
 		fo, _ := os.Create(os.Args[2]+".enc") 
-		fo.Write(encrypt(data, getKey()))
+		fo.Write(encrypt(data, ckey))
 		fmt.Println("done")
 	case "-dec":
+		ckey := getKey()
 		fi, _ := os.Open(os.Args[2]) 
 		read := bufio.NewReader(fi)
 		data, _ := ioutil.ReadAll(read) 
 		fo, _ := os.Create(os.Args[2]+".dec") 
-		fo.Write(decrypt(data,getKey()))
+		fo.Write(decrypt(data,ckey))
 		fmt.Println("done")
 	default:
 		fmt.Println("usage: "+os.Args[0]+" [-enc|-dec] <file>")
