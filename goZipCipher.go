@@ -30,20 +30,20 @@ func readdata(name string) []byte {
 
 func zip(data []byte) []byte {
 	var b bytes.Buffer
-    w := gzip.NewWriter(&b)
-    w.Write([]byte(data))
-    w.Close()
-    return b.Bytes()
+	w := gzip.NewWriter(&b)
+	w.Write([]byte(data))
+	w.Close()
+	return b.Bytes()
 }
 
 func unzip(data []byte) []byte {
 	buf := bytes.NewBuffer(data)
-    reader, _ := gzip.NewReader(buf)
+	reader, _ := gzip.NewReader(buf)
 	out, err := ioutil.ReadAll(reader)
 	if err != nil {
         panic(err)
-    }
-    return out
+	}
+	return out
 }
 
 func getKey() string {
