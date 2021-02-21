@@ -59,11 +59,13 @@ func encrypt(data []byte, keyhash string) []byte {
 	block, _ := aes.NewCipher([]byte(keyhash))
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		panic(err)
 	}
 	nonce := make([]byte, gcm.NonceSize())
 	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		panic(err)
 	}
 	dataout := gcm.Seal(nonce, nonce, data, nil)
 	return dataout
@@ -72,17 +74,20 @@ func encrypt(data []byte, keyhash string) []byte {
 func decrypt(data []byte, keyhash string) []byte {
 	block, err := aes.NewCipher([]byte(keyhash))
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		panic(err)
 	}
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		panic(err)
 	}
 	nonceSize := gcm.NonceSize()
 	nonce, ciphertext := data[:nonceSize], data[nonceSize:]
 	dataout, err := gcm.Open(nil, nonce, ciphertext, nil)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		panic(err)
 	}
 	return dataout
 }
