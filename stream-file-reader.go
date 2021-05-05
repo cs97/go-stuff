@@ -17,13 +17,13 @@ func main() {
 		panic(err)
 	}
 
-	streamread(i)
+	streamread(os.Args[1], i)
 }
 
 
 
-func streamread(c int) {
-	f, err := os.Open(os.Args[1])
+func streamread(s string, c int) {
+	f, err := os.Open(s)
 	if err != nil {
 		panic(err)
 	}
