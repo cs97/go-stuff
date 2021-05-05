@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Println("usage: "+os.Args[0]+" <count>")
+	if len(os.Args) != 3 {
+		fmt.Println("usage: "+os.Args[0]+" <file> <count>")
 		os.Exit(3)
 	}
 	
-	i, err := strconv.Atoi(os.Args[1])
+	i, err := strconv.Atoi(os.Args[2])
 	if err != nil {
 		panic(err)
 	}
@@ -23,7 +23,7 @@ func main() {
 
 
 func streamread(c int) {
-	f, err := os.Open("text1")
+	f, err := os.Open(os.Args[1])
 	if err != nil {
 		panic(err)
 	}
@@ -34,6 +34,11 @@ func streamread(c int) {
 	if err != nil {
 		panic(err)
 	}
-	
 	fmt.Printf("%d bytes: %s\n", n1, string(b1[:n1]))
+	
+	n1, err = f.Read(b1)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%d bytes: %s\n", n1, string(b1[:n1]))		
 }
