@@ -39,9 +39,5 @@ func main() {
 	
 	fmt.Println(tmp.data)
 	fmt.Println(tmp.r.data)
-	fmt.Println(tmp.l.data)
-	
-	
-	
-	
+	fmt.Println(tmp.l.data)	
 }
