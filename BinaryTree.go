@@ -30,6 +30,26 @@ func insert(n, x *node) {
 	}
 }
 
+func member(n *node, i int) bool {
+	if n.data == i {
+		return true
+	} else {
+		if n.data > i {
+			if n.l == nil {
+				return false
+			} else {
+				return member(n.l, i)
+			}
+		} else {
+			if n.r == nil {
+				return false
+			} else {
+				return member(n.r, i)
+			}
+		}
+	}
+}
+
 func main() {
 	tmp :=  &node{data: 69}
 	tmp2 := &node{data: 666}
@@ -40,4 +60,8 @@ func main() {
 	fmt.Println(tmp.data)
 	fmt.Println(tmp.r.data)
 	fmt.Println(tmp.l.data)	
+	
+	fmt.Println(member(tmp, 666))
+	fmt.Println(member(tmp, 99))
+	
 }
