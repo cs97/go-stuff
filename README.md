@@ -12,7 +12,7 @@ go test -bench=.
 ```
 ```
 import (
-  "fmt"
+	"fmt"
 	"testing"
 )
 func BenchmarkPrint(b *testing.B) {
